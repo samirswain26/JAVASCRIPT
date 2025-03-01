@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: black; color: white;">
+    <ul id="images">
+        <li > <img  id="cat" src="https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" ></li>
+        <li ><img id="dog" src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" ></li>
+        <li > <img  id="lion" src="https://images.pexels.com/photos/1598377/pexels-photo-1598377.jpeg?auto=compress&cs=tinysrgb&w=600" alt=""></li>
+        <li><img  id="parrot" src="https://images.pexels.com/photos/1463295/pexels-photo-1463295.jpeg?auto=compress&cs=tinysrgb&w=600" alt=""></li>
+        <li><a id="google" href="https://www.google.com">Google</a></li>
+    </ul>
+</body>
+<script>
+
+    // An Event Listener in JavaScript is a method that waits for a specific event (like a click, keypress, or mouseover) to occur on an element and then executes a defined function.
+
+    document.querySelector('#cat').addEventListener('mouseover', () =>{
+        alert('cat clicked');
+    } )
+
+
+    // Event propagation is the way events travel through the DOM tree when an event occurs.
+    // Event Bubbling (Default Behavior) - The event starts at the target element and then bubbles up to its parent elements. To use pass "false" as the third argument or it is the default propagation.
+    // Event Capturing (Trickling Phase) - The event starts from the top (root) and moves down to the target element. To use pass "True" as the third argument.
+
+
+    document.querySelector('#images').addEventListener('click', () =>{
+        console.log('The ul is clicked.'); 
+    }, false )
+    document.querySelector('#dog').addEventListener('click', (e) =>{
+        console.log('Dog is Clicked.');
+        e.stopPropagation()
+    }, false )
+
+    document.getElementById('google').addEventListener( ('click'), (a) => {
+        a.preventDefault()      //PreventDefault prevent the default use of that particular element.
+        // alert('Google is clicked but is it not going to open then google webpage.') 
+    }, false )
+
+
+    document.querySelector('#images').addEventListener(('click'), (a)=>{
+        console.log(a.target.tagName);
+        if (a.target.tagName === 'IMG') {
+            console.log(a.target.id);
+            let removeIt = a.target.parentNode
+            removeIt.remove()
+        }
+        
+        // removeIt.parentNode.removeChild(removeIt)
+        
+    })
+
+
+</script>
+</html>
