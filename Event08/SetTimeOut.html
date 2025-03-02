@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: black; color: white;">
+    <h1 id="heading">SAMIR KUMAR SWAIN</h1>
+    <button id="Stop">Stop Action</button>
+</body>
+<script>
+    let myname = function(){
+        console.log("SAMIR SWAIN");
+    }
+
+    let changeText = () =>{
+        document.querySelector('#heading').innerHTML = 'My Name Is Samir Kumar Swain'
+    }
+     let changename = setTimeout(changeText, 2000)  //give the path not the call the function in the first parameter and second parameter give the time in milisecond.
+
+    document.getElementById('Stop').addEventListener(('click'), ()=>{
+        clearTimeout(changename)
+        console.log("STOP");
+    })
+</script>
+</html>
