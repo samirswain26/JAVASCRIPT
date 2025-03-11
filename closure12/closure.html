@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure And Lexical Scope</title>
+</head>
+<body style="background-color: black;">
+    <button id="orange" >orange</button>
+    <button id="red">red</button>
+    <button id="white">White</button>
+</body>
+<script>
+    // Lexical scoping in JavaScript means that a function can access variables from its own scope and from the scopes of its parent functions where it was defined, not where it is called.
+
+function outer(){
+    let username = 'samir'
+    console.log(secret);     // It will not work because secret is declared in tne inner1 function that means it is inside this function. 
+                            // So this parent function have the access to get the element from the child function.But Child function access the properties of parent functions.
+                            // Also two child Function did not have the access of each others proprties. 
+
+    function inner1 (){
+        let username2 = "jitu"
+        let secret = "It's a Secret."
+        console.log("Inner 1",username);
+        function inner1of2(){
+            console.log("inner1of2", username);
+            console.log("inner1of2", username2);
+        }
+        inner1of2()
+    }
+    inner1()
+
+    function inner2 (){
+        console.log("It is inner2 output:", secret);  // It will not work because this function is trying to access the the property of another same level function. Due to global scope
+    }
+    inner2()
+
+}
+outer()
+
+
+
+
+
+
+
+
+// Closure
+
+function CricketTeams(){
+    let team1 = "India"
+    function FootballlTeams(){
+        console.log(team1);
+    }
+
+    return FootballlTeams;
+}
+
+let teams = CricketTeams()
+teams();
+
+</script>
+<script>
+    // document.getElementById("orange").addEventListener('click',()=> {
+    //     document.body.style.backgroundColor = `orange`
+    // })
+    // document.getElementById("red").addEventListener('click',()=> {
+    //     document.body.style.backgroundColor = `red`
+    // })
+    // document.getElementById("white").addEventListener('click',()=> {
+    //     document.body.style.backgroundColor = `white`
+    // })
+
+
+    function clickhandler(color){
+        return function(){
+            document.body.style.backgroundColor = `${color}`
+        }
+    }
+    document.getElementById("orange").onclick = clickhandler("orange")
+    document.getElementById("red").onclick = clickhandler("red")
+    document.getElementById("white").onclick = clickhandler("white")
+</script>
+</html>
